@@ -1,0 +1,27 @@
+.new-log {
+  background-color: #e0e0f0;
+}
+
+.old-log {
+  background-color: #f0f0f0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  border: 3px solid black;
+  padding: 12px;
+  margin-top: 10px;
+}
+button {
+  margin: 0;
+  padding: 10px;
+}
+
+pre {
+  margin: 0;
+  padding: 0;
+}
