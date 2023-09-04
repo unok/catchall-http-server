@@ -19,11 +19,12 @@ socket.on('request_data', (data) => {
 
   const now = new Date()
 
+  const query = data.query.map((q) => `\n  "${q.name}": "${q.value}"`).join(',')
   pre.innerText = `Date:    ${now.toLocaleDateString()} ${now.toLocaleTimeString()}
 Method:  ${data.method}  Url: ${data.url}
 Headers: ${JSON.stringify(data.headers, null, 2)}
 Params:  ${JSON.stringify(data.params, null, 2)}
-Query:   ${JSON.stringify(data.query, null, 2)}
+Query:   {${query ? query + '\n' : ''}}
 Body:    ${JSON.stringify(data.body, null, 2)}`
   li.appendChild(pre)
   document.getElementById('logs').prepend(li)
