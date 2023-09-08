@@ -19,7 +19,7 @@ socket.on('request_data', (data) => {
 
   const now = new Date()
 
-  const query = data.query.map((q) => `\n  "${q.name}": "${q.value}"`).join(',')
+  const query = data.query ? data.query.map((q) => `\n  "${q.name}": "${q.value}"`).join(',') : ''
   pre.innerText = `Date:    ${now.toLocaleDateString()} ${now.toLocaleTimeString()}
 Method:  ${data.method}  Url: ${data.url}
 Headers: ${JSON.stringify(data.headers, null, 2)}

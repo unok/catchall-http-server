@@ -13,7 +13,21 @@ const PORT = process.env.PORT || 3333
 const httpServer = createServer(app)
 const io = new Server(httpServer)
 
-app.use(cors())
+const allowedOrigins = (process.env.ALLOWED_HOST || 'localhost').split(',')
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      const originHostName = new URL(origin || 'http://localhost').hostname
+      if (!origin || allowedOrigins.includes(originHostName)) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
+    credentials: true,
+  })
+)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
